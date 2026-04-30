@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório Meta Ads — Dr. Caio Uemura | Jan–Abr 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f7f4ef;
+    --cream: #ede8e0;
+    --gold: #c9a84c;
+    --gold-light: #e8d49a;
+    --accent: #2c5f4a;
+    --accent2: #8b2635;
+    --muted: #6b6459;
+    --rule: #d4cfc6;
+    --card-bg: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    min-height: 340px;
+    padding: 56px 64px 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 0%, rgba(201,168,76,.18) 0%, transparent 60%);
+  }
+  .cover-eyebrow {
+    font-size: 10px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -.01em;
+  }
+  .cover h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .cover-period {
+    font-size: 12px;
+    color: rgba(247,244,239,.5);
+    margin-top: 20px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .cover-meta {
+    text-align: right;
+    font-size: 11px;
+    color: rgba(247,244,239,.4);
+    line-height: 2;
+    letter-spacing: .06em;
+    padding-bottom: 4px;
+  }
+  .cover-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-top: 12px;
+  }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 1060px; margin: 0 auto; padding: 0 40px 80px; }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 56px 0 28px;
+    padding-bottom: 14px;
+    border-bottom: 1.5px solid var(--rule);
+  }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    color: var(--gold);
+    min-width: 28px;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+
+  /* ── KPI GRID ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .kpi-card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 22px 20px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card.gold { border-top: 3px solid var(--gold); }
+  .kpi-card.green { border-top: 3px solid var(--accent); }
+  .kpi-card.red { border-top: 3px solid var(--accent2); }
+  .kpi-label {
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.02em;
+  }
+  .kpi-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ── TABLES ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    font-size: 13px;
+  }
+  thead th {
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  thead th.right { text-align: right; }
+  tbody tr { border-bottom: 1px solid var(--cream); transition: background .12s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #faf9f6; }
+  tbody td { padding: 11px 16px; vertical-align: middle; }
+  tbody td.right { text-align: right; font-variant-numeric: tabular-nums; }
+  .tag {
+    display: inline-block;
+    background: var(--cream);
+    border-radius: 3px;
+    font-size: 10px;
+    padding: 2px 7px;
+    font-weight: 500;
+    letter-spacing: .04em;
+  }
+  .tag.green { background: #d4eadf; color: #1d5c3a; }
+  .tag.gold  { background: #f4e9c8; color: #7a5a14; }
+  .tag.red   { background: #f4d4d9; color: #7a1e29; }
+  .bold { font-weight: 600; }
+  .dim { color: var(--muted); }
+
+  /* ── INSTAGRAM LINK ── */
+  .ig-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: .04em;
+    margin-left: 6px;
+    padding: 2px 6px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    transition: all .15s;
+    vertical-align: middle;
+  }
+  .ig-link:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .ig-link.blocked { border-color: #f4d4d9; color: #8b2635; background: #fff5f6; }
+  .ig-link.blocked:hover { background: #8b2635; color: #fff; border-color: #8b2635; }
+
+  /* ── RANK BADGE ── */
+  .rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 10px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .rank.gold-rank { background: var(--gold); color: var(--ink); }
+
+  /* ── AGE BARS ── */
+  .age-grid {
+    display: grid;
+    gap: 12px;
+  }
+  .age-row {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 80px 1fr 120px;
+    align-items: center;
+    gap: 16px;
+  }
+  .age-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+  .age-bar-wrap { position: relative; height: 8px; background: var(--cream); border-radius: 99px; }
+  .age-bar {
+    position: absolute;
+    left: 0; top: 0; height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--accent), #4a9d79);
+    transition: width .6s cubic-bezier(.16,1,.3,1);
+  }
+  .age-bar.gold-bar { background: linear-gradient(90deg, var(--gold), #e8c96a); }
+  .age-bar.red-bar  { background: linear-gradient(90deg, #c94c4c, #e08080); }
+  .age-stats { text-align: right; font-size: 12px; line-height: 1.6; }
+  .age-stats strong { font-size: 15px; display: block; font-weight: 600; }
+
+  /* ── INSIGHT CARDS ── */
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .insight-card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 22px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .insight-icon {
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .insight-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .insight-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .insight-highlight {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    color: var(--accent);
+    margin-top: 4px;
+  }
+
+  /* ── PROCEDURE LEADERBOARD ── */
+  .proc-grid {
+    display: grid;
+    gap: 10px;
+  }
+  .proc-row {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .proc-row.top { border-left: 3px solid var(--gold); }
+  .proc-name { flex: 1; font-weight: 500; font-size: 14px; }
+  .proc-metric { font-size: 12px; color: var(--muted); text-align: right; line-height: 1.6; }
+  .proc-metric strong { display: block; font-size: 15px; color: var(--ink); font-weight: 600; }
+
+  /* ── RECOMENDAÇÕES ── */
+  .rec-list { display: grid; gap: 12px; }
+  .rec-item {
+    display: flex;
+    gap: 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 18px 20px;
+    align-items: flex-start;
+  }
+  .rec-num {
+    flex-shrink: 0;
+    width: 30px; height: 30px;
+    background: var(--ink);
+    color: var(--gold);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .rec-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    color: rgba(247,244,239,.35);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 20px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+  }
+  .footer span { color: var(--gold); }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 6px;
+    padding: 24px 28px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .callout-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .callout-body { font-size: 13.5px; line-height: 1.65; }
+  .callout-body strong { color: var(--gold); display: block; font-size: 15px; margin-bottom: 4px; }
+
+  @media (max-width: 640px) {
+    .cover { padding: 40px 24px 36px; grid-template-columns: 1fr; }
+    .cover-meta { text-align: left; }
+    .page { padding: 0 20px 60px; }
+    .age-row { grid-template-columns: 60px 1fr; }
+    .age-stats { display: none; }
+    .footer { padding: 16px 24px; flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div>
+    <div class="cover-eyebrow">Relatório de Desempenho · Meta Ads</div>
+    <h1>Dr. Caio Uemura<br><em>Análise Estratégica</em></h1>
+    <div class="cover-period">1 de Janeiro – 30 de Abril de 2026 &nbsp;·&nbsp; 4 meses</div>
+  </div>
+  <div class="cover-meta">
+    Gerado por<br>Douglas Fortuna<br>Sigma Health<br>
+    <div class="cover-badge">Confidencial</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="page">
+
+  <!-- 1. VISÃO GERAL -->
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Visão Geral do Período</h2>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card gold">
+      <div class="kpi-label">Total de Impressões</div>
+      <div class="kpi-value">~2.1M</div>
+      <div class="kpi-sub">Distribuídas entre awareness e conversão</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Conversas Iniciadas</div>
+      <div class="kpi-value">1.770+</div>
+      <div class="kpi-sub">Leads qualificados via WhatsApp / DM</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Visitas ao Perfil</div>
+      <div class="kpi-value">47.000+</div>
+      <div class="kpi-sub">Topo de funil — brand awareness</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="kpi-label">Melhor CPR (Mensagem)</div>
+      <div class="kpi-value">R$7,28</div>
+      <div class="kpi-sub">LIP HD · 97 conversas</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Melhor CPR (Visita Perfil)</div>
+      <div class="kpi-value">R$0,065</div>
+      <div class="kpi-sub">Antes e Depois 2 — faixa 25–34</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">CTR Mais Alto</div>
+      <div class="kpi-value">14,3%</div>
+      <div class="kpi-sub">Vídeo "Não Opero" — tráfego LP</div>
+    </div>
+  </div>
+
+  <!-- CALLOUT -->
+  <div style="margin-top:20px;">
+    <div class="callout">
+      <div class="callout-icon">📌</div>
+      <div class="callout-body">
+        <strong>Dois funis em paralelo funcionando bem</strong>
+        A conta roda dois objetivos distintos com resultados sólidos: (1) <b>campanhas de conversão</b> gerando conversas qualificadas por R$7–R$13 em média — excelente para cirurgia plástica — e (2) <b>campanhas de awareness</b> construindo audiência a centavos por visita de perfil. A estratégia full-funnel está bem estruturada.
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. MELHORES ANÚNCIOS — CONVERSÃO -->
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Top Anúncios — Conversão (Mensagens)</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Anúncio / Procedimento</th>
+          <th class="right">Resultados</th>
+          <th class="right">Custo / Resultado</th>
+          <th class="right">CTR Link</th>
+          <th class="right">CPM</th>
+          <th>Avaliação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="rank gold-rank">1</span></td>
+          <td><span class="bold">01 - LIP HD</span> <a href="https://www.instagram.com/p/DKiw97aA68p/#advertiser" target="_blank" class="ig-link">▶ Ver criativo</a><div class="dim" style="font-size:11px">Vídeo explicativo · 44.425 impressões</div></td>
+          <td class="right bold">97</td>
+          <td class="right bold" style="color:#2c5f4a">R$7,28</td>
+          <td class="right">0,84%</td>
+          <td class="right">R$15,90</td>
+          <td><span class="tag green">⭐ Melhor CPR</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank gold-rank">2</span></td>
+          <td><span class="bold">01 - Abdominoplastia</span> <a href="https://www.instagram.com/p/DNqVBttgzrD/#advertiser" target="_blank" class="ig-link">▶ Ver criativo</a><div class="dim" style="font-size:11px">Versão B · 23.682 impressões</div></td>
+          <td class="right bold">154</td>
+          <td class="right bold" style="color:#2c5f4a">R$8,58</td>
+          <td class="right">1,05%</td>
+          <td class="right">R$55,82</td>
+          <td><span class="tag green">⭐ Mais Conversas</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank">3</span></td>
+          <td><span class="bold">01 - Mommy Makeover</span> <a href="https://www.instagram.com/p/DVy9YW0AMuO/#advertiser" target="_blank" class="ig-link">▶ Ver criativo</a><div class="dim" style="font-size:11px">Versão A · 23.584 impressões</div></td>
+          <td class="right bold">129</td>
+          <td class="right">R$8,70</td>
+          <td class="right">0,97%</td>
+          <td class="right">R$47,58</td>
+          <td><span class="tag gold">Ótimo</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank">4</span></td>
+          <td><span class="bold">01 - Mommy Makeover</span><div class="dim" style="font-size:11px">Versão B · 26.151 impressões</div></td>
+          <td class="right">127</td>
+          <td class="right">R$9,99</td>
+          <td class="right">0,86%</td>
+          <td class="right">R$48,51</td>
+          <td><span class="tag gold">Ótimo</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank">5</span></td>
+          <td><span class="bold">02 - LIPO</span><div class="dim" style="font-size:11px">Versão A · 24.974 impressões</div></td>
+          <td class="right bold">132</td>
+          <td class="right">R$9,88</td>
+          <td class="right">0,78%</td>
+          <td class="right">R$52,24</td>
+          <td><span class="tag gold">Volume alto</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank">6</span></td>
+          <td><span class="bold">01 - Abdominoplastia</span><div class="dim" style="font-size:11px">Versão C · 15.970 impressões</div></td>
+          <td class="right">101</td>
+          <td class="right">R$7,97</td>
+          <td class="right">0,89%</td>
+          <td class="right">R$50,40</td>
+          <td><span class="tag green">Eficiente</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank">7</span></td>
+          <td><span class="bold">01 - LIP HD</span><div class="dim" style="font-size:11px">Versão B · 33.614 impressões</div></td>
+          <td class="right">74</td>
+          <td class="right">R$7,70</td>
+          <td class="right">0,90%</td>
+          <td class="right">R$16,96</td>
+          <td><span class="tag green">CPM baixíssimo</span></td>
+        </tr>
+        <tr style="background:#fff8f8">
+          <td><span class="rank">⚠</span></td>
+          <td><span class="bold">04 - Mommy Makeover</span><div class="dim" style="font-size:11px">Versão nova · 1.001 impressões</div></td>
+          <td class="right">3</td>
+          <td class="right" style="color:#8b2635">R$21,53</td>
+          <td class="right">0,50%</td>
+          <td class="right">R$64,54</td>
+          <td><span class="tag red">Alto CPR</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px;color:var(--muted);margin-top:6px;padding-left:4px;">* CPR ideal para cirurgia plástica no Brasil: R$7–R$15. Acima de R$18 = revisar criativo ou segmentação.</p>
+
+  <!-- 3. MELHORES ANÚNCIOS — AWARENESS -->
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Top Anúncios — Awareness (Visitas ao Perfil)</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Anúncio</th>
+          <th class="right">Visitas ao Perfil</th>
+          <th class="right">Custo / Visita</th>
+          <th class="right">Impressões</th>
+          <th class="right">CTR</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="rank gold-rank">1</span></td>
+          <td><span class="bold">15/10 - Antes e Depois</span><div class="dim" style="font-size:11px">Resultado clínico visual</div></td>
+          <td class="right bold">22.365</td>
+          <td class="right bold" style="color:#2c5f4a">R$0,082</td>
+          <td class="right">212.323</td>
+          <td class="right">11,5%</td>
+          <td><span class="tag green">🏆 Rei da conta</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank gold-rank">2</span></td>
+          <td><span class="bold">17/01 - Antes e depois 2</span><div class="dim" style="font-size:11px">Sequência de transformação</div></td>
+          <td class="right bold">8.211</td>
+          <td class="right bold" style="color:#2c5f4a">R$0,065</td>
+          <td class="right">81.331</td>
+          <td class="right">11,2%</td>
+          <td><span class="tag green">CPV mais barato</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank">3</span></td>
+          <td><span class="bold">Carrossel | Lipoaspiração e Tecnologias</span><div class="dim" style="font-size:11px">Educacional / produto</div></td>
+          <td class="right">3.582</td>
+          <td class="right">R$0,205</td>
+          <td class="right">125.199</td>
+          <td class="right">3,3%</td>
+          <td><span class="tag gold">Bom volume</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank">4</span></td>
+          <td><span class="bold">20/10 - Ginecomastia</span><div class="dim" style="font-size:11px">Audiência masculina</div></td>
+          <td class="right">3.465</td>
+          <td class="right">R$0,360</td>
+          <td class="right">128.721</td>
+          <td class="right">2,7%</td>
+          <td><span class="tag gold">Nicho de valor</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank">5</span></td>
+          <td><span class="bold">24/01 - Redução de mamas</span><div class="dim" style="font-size:11px">Conteúdo informativo</div></td>
+          <td class="right">3.012</td>
+          <td class="right">R$0,179</td>
+          <td class="right">112.770</td>
+          <td class="right">2,8%</td>
+          <td><span class="tag gold">Eficiente</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank">6</span></td>
+          <td><span class="bold">24/01 - Dúvidas mais frequentes</span><div class="dim" style="font-size:11px">Série educacional</div></td>
+          <td class="right">2.078</td>
+          <td class="right">R$0,318</td>
+          <td class="right">62.957</td>
+          <td class="right">3,2%</td>
+          <td><span class="tag">Consistente</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank">7</span></td>
+          <td><span class="bold">15/10 - Lipo</span><div class="dim" style="font-size:11px">Específico de procedimento</div></td>
+          <td class="right">1.792</td>
+          <td class="right">R$0,105</td>
+          <td class="right">18.685</td>
+          <td class="right">9,9%</td>
+          <td><span class="tag green">CTR excelente</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 4. DESTAQUE ESPECIAL — VÍDEO -->
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Destaque Especial — Vídeo "Não Opero"</h2>
+  </div>
+
+  <div class="callout">
+    <div class="callout-icon">🎬</div>
+    <div class="callout-body">
+      <strong>CTR de 14,3% — o mais alto de toda a conta</strong>
+      O vídeo "Não Opero" — onde o Dr. Caio explica os casos que ele <em>não</em> opera — gerou 25.731 impressões com CTR de 14,3% e 939 visualizações de landing page a R$0,19/LPV. Isso é <b>3–5× a média de CTR</b> da conta. A honestidade e contra-intuição do conteúdo criam curiosidade irresistível. Esse tipo de conteúdo "confessional" é um dos mais poderosos para médicos: posiciona credibilidade, filtra leads e eleva percepção de valor.
+    </div>
+  </div>
+
+  <div class="kpi-grid" style="margin-top:0;">
+    <div class="kpi-card gold">
+      <div class="kpi-label">CTR do Vídeo</div>
+      <div class="kpi-value">14,3%</div>
+      <div class="kpi-sub">Benchmark médio da conta: ~3%</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">LPV Geradas</div>
+      <div class="kpi-value">939</div>
+      <div class="kpi-sub">R$0,19 por visita à landing page</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Reproduções 25%</div>
+      <div class="kpi-value">2.249</div>
+      <div class="kpi-sub">Alta retenção de audiência</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Reproduções 75%</div>
+      <div class="kpi-value">1.323</div>
+      <div class="kpi-sub">59% dos que assistiram 25% foram até 75%</div>
+    </div>
+  </div>
+
+  <!-- 5. ANÁLISE POR FAIXA ETÁRIA -->
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>Análise por Faixa Etária</h2>
+  </div>
+
+  <div class="age-grid">
+    <div class="age-row">
+      <div class="age-label">18–24</div>
+      <div>
+        <div class="age-bar-wrap"><div class="age-bar" style="width:40%"></div></div>
+        <div style="font-size:11px;color:var(--muted);margin-top:6px;">
+          <b style="color:var(--accent)">CPR mais barato:</b> R$3,18 (01 - LIPO) · R$4,72 (Mommy Makeover)<br>
+          Alto volume em awareness, boa aquisição para funil. CPM baixo.
+        </div>
+      </div>
+      <div class="age-stats">
+        <strong style="color:var(--accent)">R$3,18</strong>
+        Melhor CPR<br><span style="font-size:10px;color:var(--muted)">CPM: R$12–30</span>
+      </div>
+    </div>
+
+    <div class="age-row">
+      <div class="age-label">25–34</div>
+      <div>
+        <div class="age-bar-wrap"><div class="age-bar gold-bar" style="width:95%"></div></div>
+        <div style="font-size:11px;color:var(--muted);margin-top:6px;">
+          <b style="color:#c9a84c">Maior volume de awareness:</b> 14.377 visitas perfil @ R$0,079 · 5.543 visitas @ R$0,064<br>
+          LIP HD com R$6,44–R$6,61/conv. Abdominoplastia a R$6,94. Faixa dominante no funil.
+        </div>
+      </div>
+      <div class="age-stats">
+        <strong style="color:#c9a84c">Dominante</strong>
+        Funil completo<br><span style="font-size:10px;color:var(--muted)">CPM: R$28–40</span>
+      </div>
+    </div>
+
+    <div class="age-row">
+      <div class="age-label">35–44</div>
+      <div>
+        <div class="age-bar-wrap"><div class="age-bar" style="width:85%"></div></div>
+        <div style="font-size:11px;color:var(--muted);margin-top:6px;">
+          <b style="color:var(--accent)">Conversão forte em procedimentos premium:</b> LIP Cópia @ R$2,80 · LIP — Cópia @ R$5,73<br>
+          Abdominoplastia e Mommy Makeover com 38–47 conv/criativo. Audiência com poder de compra crescente.
+        </div>
+      </div>
+      <div class="age-stats">
+        <strong style="color:var(--accent)">R$2,80</strong>
+        Pico de eficiência<br><span style="font-size:10px;color:var(--muted)">CPM: R$40–70</span>
+      </div>
+    </div>
+
+    <div class="age-row">
+      <div class="age-label">45–54</div>
+      <div>
+        <div class="age-bar-wrap"><div class="age-bar gold-bar" style="width:80%"></div></div>
+        <div style="font-size:11px;color:var(--muted);margin-top:6px;">
+          <b style="color:#c9a84c">Audiência de maior ticket médio:</b> 02 - LIPO a R$7,03 · 02 - LIP a R$4,68<br>
+          01 - LIP HD com R$5,01 · Abdominoplastia a R$6,45–R$7,94. Excelente relação custo × intenção.
+        </div>
+      </div>
+      <div class="age-stats">
+        <strong style="color:#c9a84c">R$4,68</strong>
+        Alto poder de compra<br><span style="font-size:10px;color:var(--muted)">CPM: R$60–95</span>
+      </div>
+    </div>
+
+    <div class="age-row">
+      <div class="age-label">55–64</div>
+      <div>
+        <div class="age-bar-wrap"><div class="age-bar red-bar" style="width:35%"></div></div>
+        <div style="font-size:11px;color:var(--muted);margin-top:6px;">
+          <b style="color:#8b2635">CPM mais alto da conta (R$80–110):</b> audiência menor e mais disputada.<br>
+          Abdominoplastia gerou 37 conv @ R$6,57 — excelente dentro do segmento. 02 - LIPO a R$3,56.
+        </div>
+      </div>
+      <div class="age-stats">
+        <strong style="color:#8b2635">CPM alto</strong>
+        Nichos pontuais<br><span style="font-size:10px;color:var(--muted)">CPM: R$80–110</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. RANKING POR PROCEDIMENTO -->
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2>Ranking de Procedimentos — Conversão</h2>
+  </div>
+
+  <div class="proc-grid">
+    <div class="proc-row top">
+      <span class="rank gold-rank">1</span>
+      <div class="proc-name">
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:2px">Cirurgia corporal</div>
+        Abdominoplastia
+      </div>
+      <div class="proc-metric">
+        <strong>+500 conversas</strong>
+        ~R$8–11 / conv · melhor criativo 154 leads
+      </div>
+    </div>
+    <div class="proc-row top">
+      <span class="rank gold-rank">2</span>
+      <div class="proc-name">
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:2px">Lipoplastia</div>
+        Lipoaspiração (LIPO)
+      </div>
+      <div class="proc-metric">
+        <strong>+550 conversas</strong>
+        ~R$9–12 / conv · melhor criativo 132 leads
+      </div>
+    </div>
+    <div class="proc-row">
+      <span class="rank">3</span>
+      <div class="proc-name">
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px">Combinado</div>
+        Mommy Makeover
+      </div>
+      <div class="proc-metric">
+        <strong>+500 conversas</strong>
+        ~R$8,70–10 / conv · série 01 performa melhor
+      </div>
+    </div>
+    <div class="proc-row">
+      <span class="rank">4</span>
+      <div class="proc-name">
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px">Lipofilling</div>
+        LIP HD
+      </div>
+      <div class="proc-metric">
+        <strong>~170 conversas</strong>
+        R$7,28 melhor CPR da conta · CPM muito baixo (R$16)
+      </div>
+    </div>
+    <div class="proc-row">
+      <span class="rank">5</span>
+      <div class="proc-name">
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px">Lipofilling padrão</div>
+        LIP
+      </div>
+      <div class="proc-metric">
+        <strong>~140 conversas</strong>
+        R$6,78–8,30 / conv · boa eficiência
+      </div>
+    </div>
+    <div class="proc-row" style="border-left:3px solid #e08080">
+      <span class="rank">⚠</span>
+      <div class="proc-name">
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:2px">Atenção</div>
+        Mommy Makeover (série 02)
+      </div>
+      <div class="proc-metric">
+        <strong style="color:#8b2635">R$14–19 / conv</strong>
+        Maior CPR · revisar criativos
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. INSIGHTS ESTRATÉGICOS -->
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2>Insights Estratégicos</h2>
+  </div>
+
+  <div class="insights-grid">
+    <div class="insight-card">
+      <div class="insight-icon">🔥</div>
+      <div class="insight-title">Antes & Depois é o formato rei</div>
+      <div class="insight-body">Dois anúncios de antes e depois somaram mais de 30.000 visitas de perfil a um custo médio de R$0,07–0,08 por visita. Esses números são excepcionais e confirmam que resultados visuais reais são o criativo mais poderoso para cirurgia plástica no Meta.</div>
+      <div class="insight-highlight">→ Produzir mais conteúdo A/D com alta qualidade visual é a ação de maior ROI da conta</div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">💡</div>
+      <div class="insight-title">Conteúdo "honesto" supera conteúdo de venda</div>
+      <div class="insight-body">O Vídeo "Não Opero" — onde o médico fala o que ele recusa — teve CTR de 14,3%, 4-5x a média da conta. Conteúdo contra-intuitivo e honesto gera mais confiança e engajamento que qualquer mensagem promocional direta.</div>
+      <div class="insight-highlight">→ Série "verdades da cirurgia plástica" tem alto potencial de escala</div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">📊</div>
+      <div class="insight-title">45–54 anos: maior poder de compra, eficiência surpreendente</div>
+      <div class="insight-body">Mesmo com CPM mais alto (R$60–95), a faixa 45–54 converte bem em procedimentos específicos — R$4,68 no LIP, R$5,01 no LIP HD, R$6,45 na Abdominoplastia. São pacientes com renda mais alta e decisão mais madura, gerando tickets maiores.</div>
+      <div class="insight-highlight">→ Vale aumentar orçamento na faixa 45–54 para Abdominoplastia e LIP HD</div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">📍</div>
+      <div class="insight-title">25–34 domina o topo do funil</div>
+      <div class="insight-body">A faixa 25–34 concentra o maior volume de visitas ao perfil — 14.377 em um único criativo a R$0,079 por visita. Essa audiência alimenta o funil de remarketing e maturação de leads que vão converter em faixas etárias mais velhas.</div>
+      <div class="insight-highlight">→ Usar 25–34 para awareness e retroalimentar conversão com remarketing</div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">⚡</div>
+      <div class="insight-title">LIP HD tem o menor CPM de toda a conta</div>
+      <div class="insight-body">Os criativos de LIP HD entregam com CPM de R$15–17, enquanto procedimentos como Abdominoplastia e Mommy Makeover custam R$46–58/mil. Isso posiciona o LIP HD como o procedimento mais econômico para testar novos criativos e escalar.</div>
+      <div class="insight-highlight">→ LIP HD: aumentar volume de criativos para maximizar escala com CPM baixo</div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">🎯</div>
+      <div class="insight-title">Ginecomastia: nicho masculino com alto potencial</div>
+      <div class="insight-body">O anúncio de Ginecomastia atingiu 128.721 impressões com 3.465 visitas de perfil, gerando 728 visitas em um único dia potencial. A audiência masculina é menos disputada no Meta Ads para cirurgia plástica, resultando em CPM mais competitivo.</div>
+      <div class="insight-highlight">→ Ginecomastia merece campanha dedicada de conversão (mensagens)</div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">⚠️</div>
+      <div class="insight-title">Série 02 de Mommy Makeover precisa de revisão</div>
+      <div class="insight-body">Os criativos "02 - Mommy Makeover" apresentam CPR de R$14–19 versus R$8–10 da série 01. Mesmo procedimento, criativos diferentes com custo 70–100% maior. Provavelmente diferença de formato ou copy que não ressoa tão bem.</div>
+      <div class="insight-highlight">→ Pausar série 02 e analisar o que diferencia visualmente a série 01</div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">📱</div>
+      <div class="insight-title">Alta retenção de vídeo indica audiência qualificada</div>
+      <div class="insight-body">Em múltiplos criativos de vídeo, a taxa de quem assiste até 75% é consistentemente 50–60% de quem chegou aos 25%. Para conteúdo de saúde, isso é excelente — a audiência está genuinamente interessada, não apenas passando o dedo.</div>
+      <div class="insight-highlight">→ Criar públicos de remarketing baseados em visualização 75% do vídeo</div>
+    </div>
+  </div>
+
+  <!-- 8. RECOMENDAÇÕES -->
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2>Recomendações para os Próximos 60 Dias</h2>
+  </div>
+
+  <div class="rec-list">
+    <div class="rec-item">
+      <div class="rec-num">1</div>
+      <div class="rec-content">
+        <div class="rec-title">Escalar Antes & Depois com novos cases de resultado</div>
+        <div class="rec-body">Os dois melhores criativos da conta são antes e depois. Produzir um novo batch de 4–6 peças com resultados reais de pacientes (pós cirurgia bem documentado) e rodar teste A/B para identificar o próximo "campeão". Meta: R$0,10 por visita de perfil com escala 2×.</div>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-num">2</div>
+      <div class="rec-content">
+        <div class="rec-title">Criar campanha de conversão dedicada para Ginecomastia</div>
+        <div class="rec-body">O procedimento tem alta entrega de awareness mas ainda não tem campanha de mensagens dedicada nos dados. Com CPM menor para audiência masculina e alta intenção demonstrada, estimar CPR de R$8–12 com campanha específica de conversão.</div>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-num">3</div>
+      <div class="rec-content">
+        <div class="rec-title">Série de vídeos "confessionais" — Honestidade como estratégia</div>
+        <div class="rec-body">O CTR de 14,3% do "Não Opero" é uma prova de conceito. Desenvolver série: "O que ninguém te conta sobre...", "Por que eu não recomendo X para esse caso", "A dúvida que toda paciente tem mas tem vergonha de perguntar". Conteúdo honesto = CPM baixo + engajamento alto.</div>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-num">4</div>
+      <div class="rec-content">
+        <div class="rec-title">Remarketing para visualizadores de 75% do vídeo</div>
+        <div class="rec-body">Criar público customizado com pessoas que assistiram 75%+ dos vídeos e direcionar campanha de conversão (mensagem) diretamente para elas. Essa audiência já demonstrou intenção — o CPR tende a ser 40–60% menor do que cold audience.</div>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-num">5</div>
+      <div class="rec-content">
+        <div class="rec-title">Aumentar orçamento em LIP HD — melhor eficiência de toda a conta</div>
+        <div class="rec-body">CPM de R$15–17 com CPR de R$7,28 é a combinação mais eficiente da conta. O procedimento tem margem para escalar antes de saturar o público. Testar 2 novos criativos (ângulo educacional + resultado visual) com orçamento 30% maior.</div>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-num">6</div>
+      <div class="rec-content">
+        <div class="rec-title">Pausar ou reformular criativos da série 02 de Mommy Makeover</div>
+        <div class="rec-body">CPR de R$14–19 vs R$8–10 da série 01 no mesmo procedimento indica problema de criativo, não de público. Analisar o que diferencia a série 01 (possivelmente formato, hook, prova social) e replicar essa lógica na série 02. Não justifica continuar investindo com custo 70% maior.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Sigma Health</span> · Douglas Fortuna · Relatório Confidencial
+  <div>Meta Ads · Dr. Caio Uemura · Jan–Abr 2026</div>
+</div>
+
+</body>
+</html>
